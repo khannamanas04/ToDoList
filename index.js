@@ -48,14 +48,14 @@ const List = mongoose.model("List",listSchema);
 
 app.get("/", function(req, res) {
   
-  Item.find({})
-  .then(function(founditems){
-    if(founditems.length===0){
+  Item.find()
+  .then(function(foundItems){
+    if(foundItems.length===0){
       Item.insertMany(defaultItems);
       res.redirect("/");
     }
     else{
-      res.render("list", {listTitle: "Today", newListItems: founditems});
+      res.render("list", {listTitle: "Today", newListItems: foundItems});
     }
   });
 });
@@ -63,16 +63,22 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res){
   const itemName = req.body.newItem;
   const listName = req.body.listName;
-  const item = new Item({
-    name : itemName
-  });
+  // const item = new Item({
+  //   name : itemName
+  // });
  
   if(listName === "Today"){
+    const item = new Item({
+      name : itemName
+    });
     item.save();
     res.redirect("/");
   }
   else{
     List.findOne({name : listName}).then(function(foundList){
+      const item = new Item({
+        name : itemName
+      });
       foundList.items.push(item);
       foundList.save();
       res.redirect("/" + listName);
