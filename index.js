@@ -8,6 +8,7 @@ const _ = require("lodash");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -47,7 +48,14 @@ const listSchema = {
 const List = mongoose.model("List",listSchema);
 
 app.get("/", function(req, res) {
-  
+  const today = new Date();
+  const options = {
+    weekday:'long',
+    day:"numeric",
+    month:"long"
+  };
+  const day = today.toLocaleDateString("en-US",options);
+
   Item.find()
   .then(function(foundItems){
     if(foundItems.length===0){
@@ -55,7 +63,7 @@ app.get("/", function(req, res) {
       res.redirect("/");
     }
     else{
-      res.render("list", {listTitle: "Today", newListItems: foundItems});
+      res.render("list", {listTitle: "Today", newListItems: foundItems , date:day});
     }
   });
 });
@@ -114,6 +122,13 @@ app.post("/delete", function(req, res){
 
 app.get("/:customListName", function(req, res){
   const customListName = _.capitalize(req.params.customListName);
+  const today = new Date();
+  const options = {
+    weekday:'long',
+    day:"numeric",
+    month:"long"
+  };
+  const day = today.toLocaleDateString("en-US",options);
  
   List.findOne({name: customListName})
     .then(foundList => {
@@ -127,7 +142,7 @@ app.get("/:customListName", function(req, res){
         list.save();
         res.redirect("/" + customListName);
       } else {
-        res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
+        res.render("list", {listTitle: foundList.name, newListItems: foundList.items, date:day});
       }
     })
     .catch((err) => {

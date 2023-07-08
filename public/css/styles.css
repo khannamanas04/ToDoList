@@ -1,23 +1,42 @@
 html {
-  background: rgb(6,0,99);
-background: linear-gradient(21deg, rgba(6,0,99,1) 18%, rgba(0,168,255,1) 78%, rgba(40,17,152,1) 100%);
+  background-image: linear-gradient(100deg, #575656, #062e3f);
   height: 100vh;
-  font-family: 'helvetica neue';
+  font-family: 'Work Sans', sans-serif;
 }
-
-
+ 
 h1 {
-  color: black;
+  color: #ffdfdb;
   padding: 10px;
 }
+#datetime, #header {
+  margin: 0 auto 0 auto;
+  min-height: 10vh;
+  width: 100%;
+  color: #ffdfdb;
+}
+#header {
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  width: 100%;
+}
 
+
+#heading{
+  max-width: 400px;
+  margin: 10px auto 50px;
+  background: linear-gradient(100deg, #575656, #062e3f);
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
 .box {
   max-width: 400px;
-  margin: 50px auto;
+  margin: 10px auto 50px;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
+
 
 #heading {
   background-color: white;
@@ -62,7 +81,7 @@ button {
   width: 50px;
   border-radius: 50%;
   border-color: transparent;
-  background-color: #0f0373;
+  background-color: linear-gradient(100deg, #575656, #062e3f)
   color: #fff;
   font-size: 30px;
   padding-bottom: 6px;
