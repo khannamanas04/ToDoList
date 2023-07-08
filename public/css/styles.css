@@ -1,8 +1,9 @@
 html {
   background: rgb(6,0,99);
 background: linear-gradient(21deg, rgba(6,0,99,1) 18%, rgba(0,168,255,1) 78%, rgba(40,17,152,1) 100%);
-  min-height: 1000px;
+  height: 100vh;
   font-family: 'helvetica neue';
+
 }
 
 h1 {
